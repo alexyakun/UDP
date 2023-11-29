@@ -67,22 +67,9 @@ public class PacketCreator {
         udpData[10]=massByte[28];
         udpData[11]=massByte[29];
 
-//                System.out.println(Arrays.toString(rawData));
-
-        System.out.println(bytes);
         int checksum = CheckSum.calculate(udpData);
         byte cSum1 = (byte) (checksum>>8&0xFF);
         byte cSum2 = (byte) (checksum&0xFF);
-        System.out.print("udp data");
-        for (byte udpDatum : udpData) {
-            System.out.print(udpDatum+" ");
-        }
-        System.out.println();
-        System.out.print("udp massByte");
-        for (byte udpDatum : massByte) {
-            System.out.print(udpDatum+" ");
-        }
-        System.out.println();
         massByte[30]= (byte) (cSum1-1);
         massByte[31] = cSum2;
         return massByte;
